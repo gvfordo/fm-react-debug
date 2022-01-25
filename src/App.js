@@ -8,19 +8,11 @@ function App() {
   const [ usersById, updateUsersById ] = useState({});
 
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/posts')
-      .then(res => res.json())
+    fetch('https://jsonplaceholder.typicode.com/pots'))
       .then(posts => updatePosts(posts));
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then(res => res.json())
-      .then(users => updateUsersById(_.indexBy(users, 'id')));
+    fetch('https://jsonplaceholder.typicode.com/users'))
+      .then(users => updateUsersById(users));
   }, []);
-
-  const getUsername = (userId) => {
-    const user = usersById[ userId ];
-
-    return user ? user.name : 'Unknown User';
-  }
 
   return (
     <div className="App">
@@ -34,7 +26,7 @@ function App() {
           return (
             <article style={{ margin: '10px 0', padding: 10, border: '1px solid #ccc'}}>
               <p style={{ textDecoration: 'underline', fontWeight: 'bold' }}>{ post.title }</p>
-              <p>{ getUsername(post.userId) }</p>
+              <p>{ post.userId }</p>
               <p>{ post.body }</p>
             </article>
           )
